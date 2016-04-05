@@ -1,5 +1,6 @@
 package com.dddp.fakedianpian;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +25,6 @@ public class WelcomeGuideActivity extends AppCompatActivity {
 
     @ViewInject(R.id.btn_enter_app)
     private Button buttonEnterApp;
-//    private List<View> guideList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +32,19 @@ public class WelcomeGuideActivity extends AppCompatActivity {
         x.view().inject(this);
 
         intViewPager();
+
+        buttonEnterApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2main = new Intent(WelcomeGuideActivity.this, MainActivity.class);
+                startActivity(intent2main);
+            }
+        });
     }
 
     private void intViewPager() {
         List<View> guideList = new ArrayList<>();
-/*        int[] guideRes = {R.drawable.welcome_guilde_1, R.drawable.welcome_guilde_2,
-                R.drawable.welcome_guilde_3};
-        for (int i = 0; i < guideRes.length; i++) {
-            ImageView imageView = new ImageView(this);
-            imageView.setBackgroundResource(guideRes[i]);
-            guideList.add(imageView);
-            System.out.println("No. " + i);
 
-        }*/
         ImageView imageView1 = new ImageView(this);
         imageView1.setImageResource(R.drawable.welcome_guilde_1);
         guideList.add(imageView1);
@@ -61,8 +61,4 @@ public class WelcomeGuideActivity extends AppCompatActivity {
 
     }
 
-    @Event(R.id.btn_enter_app)
-    public void click(){
-
-    }
 }
