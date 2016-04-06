@@ -9,7 +9,7 @@
         android:text="A"
         android:textSize="@dimen/text_size_default"
         android:id="@+id/city_list_item_sort"
-        android:background="@color/normal_bg_color"/>
+        android:background="@color/grey"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

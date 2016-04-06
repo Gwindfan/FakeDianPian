@@ -53,8 +53,8 @@ public class MyListAdapter extends BaseAdapter {
         } else {
             holder = (Holder) convertView.getTag();
         }
-        // data show process
 
+        // data show processing
         City city = cityList.get(position);
         String name = city.getName();
         String sort = city.getSortKey();

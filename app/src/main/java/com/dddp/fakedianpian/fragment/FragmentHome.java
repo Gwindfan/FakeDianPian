@@ -1,5 +1,6 @@
 package com.dddp.fakedianpian.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -56,6 +57,15 @@ public class FragmentHome extends Fragment implements LocationListener {
         return view;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ( requestCode == MyUtils.REQUEST_CITY_CODE && resultCode == Activity.RESULT_OK){
+            cityName = data.getStringExtra("cityName");
+            topCity.setText(cityName);
+        }
+    }
+
     // check gps settings
     @Override
     public void onStart() {
@@ -71,7 +81,7 @@ public class FragmentHome extends Fragment implements LocationListener {
             Intent intent = new Intent();
             intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivityForResult(intent, 0);
+            startActivityForResult(intent, MyUtils.REQUEST_GPS_SETTINGS_CODE);
         }
 
         // Start locating
@@ -81,7 +91,6 @@ public class FragmentHome extends Fragment implements LocationListener {
     private void startLocating() {
         Log.i("TAG", "Start to get location");
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
     }
 
     private Handler handler = new Handler(new Handler.Callback() {
