@@ -10,6 +10,7 @@ import android.content.SharedPreferences.Editor;
 public class SharedPreferencesUtils {
     private static final String FILE_NAME = "dianping";
     private static final String MODE_NAME = "welcome";
+    private static final String CITY_NAME = "cityName";
 
     //Read
     public static boolean getWelcomeBoolean(Context context){
@@ -20,5 +21,15 @@ public class SharedPreferencesUtils {
         Editor editor = context.getSharedPreferences(FILE_NAME, Context.MODE_APPEND).edit();
         editor.putBoolean(MODE_NAME, isFirst);
         editor.commit();
+    }
+
+    public static void putCityName(Context context, String cityName){
+        Editor editor = context.getSharedPreferences(FILE_NAME, Context.MODE_APPEND).edit();
+        editor.putString(CITY_NAME, cityName);
+        editor.commit();
+    }
+
+    public static String getCityName(Context context){
+        return context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE).getString(CITY_NAME, "Select a city");
     }
 }

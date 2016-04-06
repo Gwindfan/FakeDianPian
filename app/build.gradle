@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile files('libs/okhttp-3.2.0.jar')
     compile 'org.xutils:xutils:3.3.26'
+    compile files('libs/gson-2.6.2.jar')
 }
