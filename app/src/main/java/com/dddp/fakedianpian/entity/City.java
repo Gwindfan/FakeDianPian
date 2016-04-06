@@ -1,4 +1,4 @@
-package com.dddp.fakedianpian;
+package com.dddp.fakedianpian.entity;
 
 /**
  * Created by Bruce J on 2016/4/6.
