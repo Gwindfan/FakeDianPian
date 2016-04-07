@@ -3,6 +3,7 @@ package com.dddp.fakedianpian;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,7 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
         cityList = parseCityDataJson(jsonString);
         MyListAdapter adapter = new MyListAdapter(cityList);
         lvCity.setAdapter(adapter);
+
         // set listView listener
         lvCity.setOnItemClickListener(this);
         // Select city page, back
@@ -72,7 +74,8 @@ public class CityActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent();
-        TextView textView = (TextView) findViewById(R.id.city_list_item_name);
+        TextView textView = (TextView) view.findViewById(R.id.city_list_item_name);
+//        Log.i("TAG", "cityName: " + textView.getText());
         intent.putExtra("cityName", textView.getText());
         setResult(RESULT_OK, intent);
         finish();

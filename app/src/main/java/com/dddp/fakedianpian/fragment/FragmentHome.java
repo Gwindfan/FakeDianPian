@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.dddp.fakedianpian.CityActivity;
@@ -29,7 +31,11 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import android.os.Handler;
 
 /**
@@ -40,6 +46,15 @@ public class FragmentHome extends Fragment implements LocationListener {
     private TextView topCity;
     private String cityName;
     private LocationManager locationManager;
+    @ViewInject(R.id.gv_home)
+    private GridView gv_home;
+
+
+
+    private List<Map<String, Object>> navList;
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,8 +68,25 @@ public class FragmentHome extends Fragment implements LocationListener {
                 startActivityForResult(new Intent(getActivity(), CityActivity.class), MyUtils.REQUEST_CITY_CODE);
             }
         });
+        //Add sorted navigator
+        navList = new ArrayList<>();
+        SimpleAdapter adapter = new SimpleAdapter(getActivity(), getData(), R.layout.home_nav_item,
+                new String[] {"icon", "text"},
+                new int[] {R.id.iv_nav_item, R.id.tv_nav_item});
+        gv_home.setAdapter(adapter);
 
         return view;
+    }
+
+    private List<Map<String, Object>> getData() {
+        for (int i = 0; i < MyUtils.res.length; i++) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("icon", MyUtils.res[i]);
+            map.put("text", MyUtils.text[i]);
+            navList.add(map);
+        }
+
+        return navList;
     }
 
     @Override

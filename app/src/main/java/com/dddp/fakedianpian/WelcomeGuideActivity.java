@@ -55,7 +55,6 @@ public class WelcomeGuideActivity extends AppCompatActivity {
         imageView3.setImageResource(R.drawable.welcome_guilde_3);
         guideList.add(imageView3);
 
-
         MyPagerAdapter myPagerAdapter = new MyPagerAdapter(guideList);
         viewPagerWelcomeGuide.setAdapter(myPagerAdapter);
 

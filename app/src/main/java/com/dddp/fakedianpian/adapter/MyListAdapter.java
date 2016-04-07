@@ -75,8 +75,8 @@ public class MyListAdapter extends BaseAdapter {
 
     public class Holder {
         @ViewInject(R.id.city_list_item_sort)
-        public TextView keySort;
+        private TextView keySort;
         @ViewInject(R.id.city_list_item_name)
-        public TextView cityName;
+        private TextView cityName;
     }
 }
