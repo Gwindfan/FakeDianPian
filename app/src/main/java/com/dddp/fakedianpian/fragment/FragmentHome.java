@@ -17,10 +17,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.dddp.fakedianpian.AllCategoryActivity;
 import com.dddp.fakedianpian.CityActivity;
 import com.dddp.fakedianpian.R;
 import com.dddp.fakedianpian.utils.MyUtils;
@@ -74,6 +76,15 @@ public class FragmentHome extends Fragment implements LocationListener {
                 new String[] {"icon", "text"},
                 new int[] {R.id.iv_nav_item, R.id.tv_nav_item});
         gv_home.setAdapter(adapter);
+
+        gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position ==  MyUtils.allCategory.length -1) {
+                    startActivity(new Intent(getActivity(), AllCategoryActivity.class));
+                }
+            }
+        });
 
         return view;
     }

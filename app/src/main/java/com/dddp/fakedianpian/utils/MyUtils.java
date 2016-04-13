@@ -19,4 +19,7 @@ public class MyUtils {
             "Cafeteria", "Recreation",
             "Travel", "Shopping",
             "All"};
+
+    public static final int[] allCategoryImages = res;
+    public static final String[] allCategory = text;
 }
